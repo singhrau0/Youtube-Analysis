@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like Predictor</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff; /* White text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #2c2c2c; /* Slightly lighter dark background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, #ff007f, #00d4ff, #ff007f);
+            top: -50%;
+            left: -50%;
+            transform: rotate(45deg);
+            animation: animate 6s linear infinite;
+            z-index: -1;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            bottom: 2px;
+            left: 2px;
+            right: 2px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(405deg);
+            }
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .form-group select {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .btn-submit {
+            background-color: #00d4ff;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff007f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-content">
+            <h2>Predict Likes</h2>
+            <form id="likePredictorForm" action="/predict" method="POST">
+                <!-- Views -->
+                <div class="form-group">
+                    <label for="views">Views</label>
+                    <input type="number" id="views" name="views" required>
+                </div>
+
+                <!-- Dislikes -->
+                <div class="form-group">
+                    <label for="dislikes">Dislikes</label>
+                    <input type="number" id="dislikes" name="dislikes" required>
+                </div>
+
+                <!-- Comment Count -->
+                <div class="form-group">
+                    <label for="commentCount">Comment Count</label>
+                    <input type="number" id="commentCount" name="commentCount" required>
+                </div>
+
+                <!-- Genre Dropdown -->
+                <div class="form-group">
+                    <label for="genre">Genre</label>
+                    <select id="genre" name="genre" required>
+                        <option value="">Select Genre</option>
+                        <option value="0">Autos & Vehicles</option>
+                        <option value="1">Comedy</option>
+                        <option value="2">Education</option>
+                        <option value="3">Entertainment</option>
+                        <option value="4">Film & Animation</option>
+                        <option value="5">Gaming</option>
+                        <option value="6">Howto & Style</option>
+                        <option value="7">Music</option>
+                        <option value="8">News & Politics</option>
+                        <option value="9">Nonprofits & Activism</option>
+                        <option value="10">People & Blogs</option>
+                        <option value="11">Pets & Animals</option>
+                        <option value="12">Science & Technology</option>
+                        <option value="13">Shows</option>
+                        <option value="14">Sports</option>
+                        <option value="15">Travel & Events</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit">Predict Likes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
